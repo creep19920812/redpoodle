@@ -1,3 +1,0 @@
-mvn install:install-file -Dfile=android-support-v7-appcompat.jar -DgroupId=com.google.android -DartifactId=android-support-v7 -Dversion=appcompat -Dpackaging=jar
-mvn install:install-file -Dfile=android-support-v4.jar -DgroupId=com.google.android -DartifactId=android-support -Dversion=v4 -Dpackaging=jar
-mvn install:install-file -Dfile=android.jar -DgroupId=com.google.android -DartifactId=android -Dversion=5.0 -Dpackaging=jar
