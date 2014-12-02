@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RedPoodle</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <color name="custom_background_color">#FFEFFB</color>
+
+    <style name="CustomTheme" parent="android:Theme.Light">
+        <item name="android:colorBackground">@color/custom_background_color</item>
+        <item name="android:windowBackground">@color/custom_background_color</item>
+    </style>
+
+</resources>
