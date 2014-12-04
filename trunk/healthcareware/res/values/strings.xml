@@ -7,9 +7,11 @@
 
     <color name="custom_background_color">#FFEFFB</color>
 
+    <!--
     <style name="CustomTheme" parent="android:Theme.Light">
         <item name="android:colorBackground">@color/custom_background_color</item>
         <item name="android:windowBackground">@color/custom_background_color</item>
     </style>
+    -->
 
 </resources>
