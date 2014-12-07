@@ -44,11 +44,17 @@
 			<version>3.0.1</version>
 		</dependency>
 		<dependency>
-			<groupId>com.googlecode.androidannotations</groupId>
+			<groupId>org.androidannotations</groupId>
 			<artifactId>androidannotations-api</artifactId>
-			<version>2.7.1</version>
+			<version>3.2</version>
 		</dependency>
-			</dependencies>
+		<dependency>
+			<groupId>org.androidannotations</groupId>
+			<artifactId>androidannotations</artifactId>
+			<version>3.2</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<pluginManagement>
@@ -71,26 +77,10 @@
 					</sdk>
 				</configuration>
 			</plugin>
-			<!--
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>
-								libs
-							</outputDirectory>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			-->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-dependency-plugin</artifactId> 
+				<executions> <execution> <id>copy</id> <phase>package</phase> <goals> <goal>copy-dependencies</goal> 
+				</goals> <configuration> <outputDirectory> libs </outputDirectory> </configuration> 
+				</execution> </executions> </plugin> -->
 		</plugins>
 	</build>
 </project>
