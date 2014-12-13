@@ -6,7 +6,9 @@
     <string name="action_settings">Settings</string>
 
     <color name="custom_background_color">#FFEFFB</color>
-
+    <color name="background_color_main">#FFFFFF</color>
+    <color name="background_color_sub">#F2F2F2</color>
+    
     <!--
     <style name="CustomTheme" parent="android:Theme.Light">
         <item name="android:colorBackground">@color/custom_background_color</item>
