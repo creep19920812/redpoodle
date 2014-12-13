@@ -3,6 +3,7 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color_sub"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -13,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="4"
+        android:layout_weight="1"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -25,9 +26,17 @@
                 android:id="@+id/rscMsgBox"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="" />
+                android:background="@color/background_color_sub"
+                android:gravity="center" />
+
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,6 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:background="@color/background_color_main"
                 android:gravity="center"
                 android:textSize="58dp" />
         </LinearLayout>
@@ -47,7 +57,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="3"
+        android:layout_weight="2"
+        android:background="@color/background_color_main"
         android:orientation="horizontal" >
 
         <LinearLayout
@@ -147,43 +158,57 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:layout_weight="3"
-        android:orientation="horizontal" >
+        android:layout_weight="2"
+        android:background="@color/background_color_sub"
+        android:orientation="horizontal"
+        android:paddingBottom="14dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="14dp" >
 
         <Button
             android:id="@+id/rscStart"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="4dp"
             android:layout_weight="2.5"
-            android:background="@drawable/custom_button"
-            android:paddingRight="3dp"
-            android:text="開始" />
+            android:background="@drawable/button"
+            android:text="開始" >
+
+        </Button>
 
         <Button
             android:id="@+id/rscEnd"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="4dp"
             android:layout_weight="2.5"
-            android:background="@drawable/custom_button"
-            android:paddingRight="3dp"
-            android:text="終了" />
+            android:background="@drawable/button"
+            android:text="終了" >
+
+        </Button>
 
         <Button
             android:id="@+id/rscRollback"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="4dp"
             android:layout_weight="2.5"
-            android:background="@drawable/custom_button"
-            android:paddingRight="3dp"
-            android:text="RB" />
+            android:background="@drawable/button"
+            android:text="Roll\nback" >
+
+        </Button>
 
         <Button
             android:id="@+id/rscClear"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_margin="4dp"
             android:layout_weight="2.5"
-            android:background="@drawable/custom_button"
-            android:text="CL" />
-        </LinearLayout>
+            android:background="@drawable/button"
+            android:text="Clear" >
+
+        </Button>
+    </LinearLayout>
 
 </LinearLayout>
