@@ -6,7 +6,9 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import android.app.Activity;
+import android.os.SystemClock;
 import android.widget.Button;
+import android.widget.Chronometer;
 import android.widget.TextView;
 
 import com.redpoodle.healthcareware.util.Util;
@@ -18,13 +20,16 @@ import com.redpoodle.healthcareware.util.Util;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends Activity {
 
+	private long time = 0;
+
 	// メッセージボックス
 	@ViewById(R.id.rscMsgBox)
 	TextView tvMsgBox;
 
 	// インターバルタイマー
 	@ViewById(R.id.rscIntervalTimer)
-	TextView tvIntervalTimer;
+	// TextView tvIntervalTimer;
+	Chronometer tvIntervalTimer;
 
 	// セット１
 	@ViewById(R.id.rscSet1)
@@ -106,20 +111,48 @@ public class MainActivity extends Activity {
 	@AfterViews()
 	public void init() {
 		// 　１、値をすべて初期化する
-		tvIntervalTimer.setText("");
 		tvMsgBox.setText("");
+		tvIntervalTimer.setText("");
+		tvSetTime1.setText("");
+		tvSetTime2.setText("");
+		tvSetTime3.setText("");
+		tvSetTime4.setText("");
+		tvSetTime1.setText("");
+		tvSetTime2.setText("");
+		tvSetTime3.setText("");
+		tvSetTime4.setText("");
 		// 　２．メッセージに「待機中」を表示する
+		tvMsgBox.setText("waiting...");
+
 		// 　３．ロールバックボタンを非活性
+		btStart.setEnabled(true);
+		btEnd.setEnabled(true);
+		btRollback.setEnabled(false);
+		btClear.setEnabled(true);
+
 	}
 
 	@Click(R.id.rscStart)
 	public void execStart() {
-		Util.showDialog(this, "start!");
+		// 　１．メッセージに「ワークアウト中」を表示する
+		tvMsgBox.setText("execute workout");
+		// 　２．開始ボタンを非活性にする
+		btStart.setEnabled(false);
+		btEnd.setEnabled(true);
+		btRollback.setEnabled(true);
+		btClear.setEnabled(true);
+
+		// 　３．前回セットラベルの色を戻す
+		// 　４．カレントセットラベルに色付する
+		// 　５．新規カウント開始
+		tvIntervalTimer.setBase(SystemClock.elapsedRealtime() - time);
+		tvIntervalTimer.start();
 	}
 
 	@Click(R.id.rscEnd)
 	public void execEnd() {
-		Util.showDialog(this, "end!");
+		tvIntervalTimer.stop();
+		time = SystemClock.elapsedRealtime() - tvIntervalTimer.getBase();
 	}
 
 	@Click(R.id.rscRollback)
@@ -129,7 +162,30 @@ public class MainActivity extends Activity {
 
 	@Click(R.id.rscClear)
 	public void execClear() {
-		Util.showDialog(this, "clear!");
+		tvIntervalTimer.stop();
+		time = 0;
+
+		// 　１、値をすべて初期化する
+		tvMsgBox.setText("");
+		// tvIntervalTimer.setText("");
+		tvIntervalTimer.setBase(SystemClock.elapsedRealtime());
+		tvSetTime1.setText("");
+		tvSetTime2.setText("");
+		tvSetTime3.setText("");
+		tvSetTime4.setText("");
+		tvSetTime1.setText("");
+		tvSetTime2.setText("");
+		tvSetTime3.setText("");
+		tvSetTime4.setText("");
+		// 　２．メッセージに「待機中」を表示する
+		tvMsgBox.setText("waiting...");
+
+		// 　３．ロールバックボタンを非活性
+		btStart.setEnabled(true);
+		btEnd.setEnabled(true);
+		btRollback.setEnabled(false);
+		btClear.setEnabled(true);
+
 	}
 
 }

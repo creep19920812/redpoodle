@@ -13,7 +13,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical" >
 
@@ -28,13 +28,12 @@
                 android:layout_height="match_parent"
                 android:background="@color/background_color_sub"
                 android:gravity="center" />
-
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="5"
         android:orientation="vertical" >
 
@@ -50,113 +49,135 @@
                 android:layout_gravity="center"
                 android:background="@color/background_color_main"
                 android:gravity="center"
-                android:textSize="58dp" />
+                android:textSize="128dp" />
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="2"
         android:background="@color/background_color_main"
         android:orientation="horizontal" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical" >
+        <!--
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="8dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="8dp"
+            android:scaleType="fitXY"
+            android:src="@android:drawable/divider_horizontal_dark" />
+        -->
 
-            <TextView
-                android:id="@+id/rscSet1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:gravity="center"
-                android:text="TextView" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            android:layout_margin="4dp">
 
-            <TextView
-                android:id="@+id/rscSetTime1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="TextView" />
-        </LinearLayout>
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="3"
+                android:background="#000000" >
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/rscSet1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
 
-            <TextView
-                android:id="@+id/rscSet2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:gravity="center"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/rscSet2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
 
-            <TextView
-                android:id="@+id/rscSetTime2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="TextView" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/rscSet3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/rscSet4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
+            </TableRow>
 
-            <TextView
-                android:id="@+id/rscSet3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:gravity="center"
-                android:text="TextView" />
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="#000000" >
 
-            <TextView
-                android:id="@+id/rscSetTime3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="TextView" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/rscSetTime1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2.5"
-            android:orientation="vertical" >
+                <TextView
+                    android:id="@+id/rscSetTime2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
 
-            <TextView
-                android:id="@+id/rscSet4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="8"
-                android:gravity="center"
-                android:text="TextView" />
+                <TextView
+                    android:id="@+id/rscSetTime3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
 
-            <TextView
-                android:id="@+id/rscSetTime4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="TextView" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/rscSetTime4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="1dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:gravity="center"
+                    android:text="TextView" />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="4dp"
         android:layout_weight="2"
         android:background="@color/background_color_sub"
@@ -168,46 +189,42 @@
 
         <Button
             android:id="@+id/rscStart"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="2.5"
             android:background="@drawable/button"
             android:text="開始" >
-
         </Button>
 
         <Button
             android:id="@+id/rscEnd"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="2.5"
             android:background="@drawable/button"
             android:text="終了" >
-
         </Button>
 
         <Button
             android:id="@+id/rscRollback"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="2.5"
             android:background="@drawable/button"
             android:text="Roll\nback" >
-
         </Button>
 
         <Button
             android:id="@+id/rscClear"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="4dp"
             android:layout_weight="2.5"
             android:background="@drawable/button"
             android:text="Clear" >
-
         </Button>
     </LinearLayout>
 
