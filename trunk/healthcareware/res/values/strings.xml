@@ -9,6 +9,12 @@
     <color name="background_color_main">#FFFFFF</color>
     <color name="background_color_sub">#F2F2F2</color>
     
+    <color name="main_color1">#eaf1dd</color>
+    <color name="main_color2">#d6e4bc</color>
+    <color name="main_color3">#c2d69a</color>
+    <color name="main_color4">#75923c</color>
+    <color name="main_color5">#4f6228</color>
+
     <!--
     <style name="CustomTheme" parent="android:Theme.Light">
         <item name="android:colorBackground">@color/custom_background_color</item>

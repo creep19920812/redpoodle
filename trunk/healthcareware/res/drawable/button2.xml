@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android">
+ 
+  <!-- 押下状態定義 -->
+  <item android:state_pressed="true">
+    <shape android:shape="rectangle">
+      <corners android:radius="2dp" />
+ 
+      <gradient
+      android:angle="270"
+      android:startColor="@color/main_color3"
+      android:endColor="@color/main_color3" />
+ 
+      <stroke
+      android:width="2dp"
+      android:color="@color/main_color4" />
+ 
+      <padding
+      android:top="10dp"
+      android:bottom="10dp"
+      android:left="10dp"
+      android:right="10dp" />
+    </shape>
+  </item> 
+
+  <!-- 非活性状態定義 -->
+  <item android:state_enabled="false">
+    <shape android:shape="rectangle">
+      <corners android:radius="2dp" />
+ 
+      <gradient
+      android:angle="270"
+      android:startColor="#C0C0C0"
+      android:endColor="#A9A9A9" />
+ 
+      <stroke
+      android:width="2dp"
+      android:color="#696969" />
+ 
+      <padding
+      android:top="10dp"
+      android:bottom="10dp"
+      android:left="10dp"
+      android:right="10dp" />
+    </shape>
+  </item>
+
+  <!-- 通常状態定義 -->
+  <item>
+    <shape android:shape="rectangle">
+      <corners android:radius="2dp" />
+ 
+      <gradient
+      android:angle="270"
+      android:startColor="@color/main_color3"
+      android:endColor="@color/main_color1" />
+ 
+      <stroke
+      android:width="2dp"
+      android:color="@color/main_color4" />
+ 
+      <padding
+      android:top="10dp"
+      android:bottom="10dp"
+      android:left="10dp"
+      android:right="10dp" />
+    </shape>
+  </item>
+</selector>
