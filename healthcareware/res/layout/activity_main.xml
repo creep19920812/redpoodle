@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_color_sub"
-            android:gravity="center" />
+            android:gravity="center" 
+            android:textSize="22dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -47,7 +48,7 @@
                 android:background="@color/main_color4" >
 
                 <TextView
-                    android:id="@+id/rscNav1"
+                    android:id="@+id/rscNavi1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
@@ -61,7 +62,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/rscNav2"
+                    android:id="@+id/rscNavi2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
@@ -75,7 +76,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/rscNav3"
+                    android:id="@+id/rscNavi3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
@@ -89,7 +90,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/rscNav4"
+                    android:id="@+id/rscNavi4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
@@ -261,7 +262,7 @@
                 android:background="@color/main_color4" >
 
                 <TextView
-                    android:id="@+id/rscInterval1"
+                    android:id="@+id/rscIntervalTime1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
@@ -274,7 +275,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/rscInterval2"
+                    android:id="@+id/rscIntervalTime2"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
@@ -287,7 +288,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/rscInterval3"
+                    android:id="@+id/rscIntervalTime3"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
@@ -300,7 +301,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/rscInterval4"
+                    android:id="@+id/rscIntervalTime4"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"

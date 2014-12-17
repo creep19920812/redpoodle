@@ -7,10 +7,12 @@ import org.androidannotations.annotations.ViewById;
 
 import android.app.Activity;
 import android.os.SystemClock;
+import android.os.Vibrator;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.TextView;
 
+import com.redpoodle.healthcareware.util.Constants;
 import com.redpoodle.healthcareware.util.Util;
 
 /**
@@ -26,9 +28,24 @@ public class MainActivity extends Activity {
 	@ViewById(R.id.rscMsgBox)
 	TextView tvMsgBox;
 
+	// ナビ１
+	@ViewById(R.id.rscNavi1)
+	TextView tvNavi1;
+
+	// ナビ２
+	@ViewById(R.id.rscNavi2)
+	TextView tvNavi2;
+
+	// ナビ３
+	@ViewById(R.id.rscNavi3)
+	TextView tvNavi3;
+
+	// ナビ４
+	@ViewById(R.id.rscNavi4)
+	TextView tvNavi4;
+
 	// インターバルタイマー
 	@ViewById(R.id.rscIntervalTimer)
-	// TextView tvIntervalTimer;
 	Chronometer tvIntervalTimer;
 
 	// セット１
@@ -63,6 +80,22 @@ public class MainActivity extends Activity {
 	@ViewById(R.id.rscSetTime4)
 	TextView tvSetTime4;
 
+	// インターバルタイム１
+	@ViewById(R.id.rscIntervalTime1)
+	TextView tvIntervalTime1;
+
+	// インターバルタイム２
+	@ViewById(R.id.rscIntervalTime2)
+	TextView tvIntervalTime2;
+
+	// インターバルタイム３
+	@ViewById(R.id.rscIntervalTime3)
+	TextView tvIntervalTime3;
+
+	// インターバルタイム４
+	@ViewById(R.id.rscIntervalTime4)
+	TextView tvIntervalTime4;
+
 	// 開始
 	@ViewById(R.id.rscStart)
 	Button btStart;
@@ -80,112 +113,188 @@ public class MainActivity extends Activity {
 	Button btClear;
 
 	// バイブレーションタイム(msec)
-	// private static final long VIB_TIME = 50;
+	private static final long VIB_TIME = 50;
 
-	// private Vibrator vib;
+	private Vibrator vib;
+
+	private int currentSet;
 
 	// ■イベント一覧
 	// ・初期イベント
 	// 　１、値をすべて初期化する
 	// 　２．メッセージに「待機中」を表示する
-	// 　３．ロールバックボタンを非活性
+	// 　３．ロールバック/終了ボタンを非活性
 	// ・開始イベント
 	// 　１．メッセージに「ワークアウト中」を表示する
-	// 　２．開始ボタンを非活性にする
-	// 　３．前回セットラベルの色を戻す
-	// 　４．カレントセットラベルに色付する
-	// 　５．新規カウント開始
+	// 　２．カレントセットを1++
+	// 　３．開始ボタンを非活性にする
+	// 　４．終了ボタンを活性にする
+	// 　５．セットナビゲータをセット
+	// 　６．２セット目以降の場合、カウントをインターバルラベルにセットする
+	// 　７．セットカウント開始
 	// ・終了イベント
 	// 　１．メッセージに「インターバル」を表示する
-	// 　２．終了ボタンを非活性にする
-	// 　３．カウントをカレントセットタイムラベルにセットする
-	// 　４．新規カウント開始
+	// 　２．開始ボタンを活性にする
+	// 　３．終了ボタンを非活性にする
+	// 　４．カウントをカレントセットタイムラベルにセットする
+	// 　５．インターバルカウント開始
 	// ・ロールバックイベント
-	// 　１．カレントセットを1--
+	// 　１．カレントセットが0以上の場合、カレントセットを1--
 	// 　２、値をすべて初期化する
 	// 　３．メッセージに「待機中」を表示する
-	// 　４．１セットの場合ロールバックボタンを非活性
+	// ４．カレントセットが0の場合、ロールバックボタンを非活性
 	// ・クリアイベント
 	// 　初期イベントと同じ振る舞い
 
 	@AfterViews()
 	public void init() {
 		// 　１、値をすべて初期化する
-		tvMsgBox.setText("");
-		tvIntervalTimer.setText("");
-		tvSetTime1.setText("");
-		tvSetTime2.setText("");
-		tvSetTime3.setText("");
-		tvSetTime4.setText("");
-		tvSetTime1.setText("");
-		tvSetTime2.setText("");
-		tvSetTime3.setText("");
-		tvSetTime4.setText("");
-		// 　２．メッセージに「待機中」を表示する
-		tvMsgBox.setText("waiting...");
+		clearData();
+		currentSet = 0;
 
-		// 　３．ロールバックボタンを非活性
+		// 　２．メッセージに「待機中」を表示する
+		tvMsgBox.setText("待機中");
+
+		// 　３．ロールバック/終了ボタンを非活性
 		btStart.setEnabled(true);
-		btEnd.setEnabled(true);
+		btEnd.setEnabled(false);
 		btRollback.setEnabled(false);
 		btClear.setEnabled(true);
+
+		vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 	}
 
 	@Click(R.id.rscStart)
 	public void execStart() {
-		// 　１．メッセージに「ワークアウト中」を表示する
-		tvMsgBox.setText("execute workout");
-		// 　２．開始ボタンを非活性にする
-		btStart.setEnabled(false);
-		btEnd.setEnabled(true);
-		btRollback.setEnabled(true);
-		btClear.setEnabled(true);
+		vib.vibrate(VIB_TIME);
 
-		// 　３．前回セットラベルの色を戻す
-		// 　４．カレントセットラベルに色付する
-		// 　５．新規カウント開始
-		tvIntervalTimer.setBase(SystemClock.elapsedRealtime() - time);
+		// 　１．メッセージに「ワークアウト中」を表示する
+		tvMsgBox.setText("ワークアウト中");
+
+		// 　２．カレントセットを1++
+		currentSet++;
+
+		// 　３．開始ボタンを非活性にする
+		btStart.setEnabled(false);
+
+		// 　４．終了ボタンを活性にする
+		btEnd.setEnabled(true);
+
+		// 　５．セットナビゲータをセット
+		setNavigator(currentSet);
+
+		// ５．１　２セット目移行の開始であればロールバックボタンを活性
+		if (currentSet > 1) {
+			btRollback.setEnabled(true);
+		}
+
+		// 　６．２セット目以降の場合、カウントをインターバルラベルにセットする
+		if (currentSet == 2) {
+			tvIntervalTime1.setText(tvIntervalTimer.getText());
+		} else if (currentSet == 3) {
+			tvIntervalTime2.setText(tvIntervalTimer.getText());
+		} else if (currentSet == 4) {
+			tvIntervalTime3.setText(tvIntervalTimer.getText());
+		}
+
+		// 　７．セットカウント開始
+		tvIntervalTimer.setBase(android.os.SystemClock.elapsedRealtime());
 		tvIntervalTimer.start();
 	}
 
 	@Click(R.id.rscEnd)
 	public void execEnd() {
+		vib.vibrate(VIB_TIME);
+
+		// １．カウント停止
 		tvIntervalTimer.stop();
 		time = SystemClock.elapsedRealtime() - tvIntervalTimer.getBase();
+
+		// 　２．メッセージに「インターバル」を表示する
+		tvMsgBox.setText("インターバル");
+
+		// 　３．開始ボタンを活性にする
+		btStart.setEnabled(true);
+
+		// 　４．終了ボタンを非活性にする
+		btEnd.setEnabled(false);
+
+		// 　５．カウントをカレントセットタイムラベルにセットする
+		if (currentSet == 1) {
+			tvSetTime1.setText(tvIntervalTimer.getText());
+		} else if (currentSet == 2) {
+			tvSetTime2.setText(tvIntervalTimer.getText());
+		} else if (currentSet == 3) {
+			tvSetTime3.setText(tvIntervalTimer.getText());
+		} else if (currentSet == 4) {
+			tvSetTime4.setText(tvIntervalTimer.getText());
+		}
+
+		// 　６．インターバルカウント開始
+		tvIntervalTimer.setBase(android.os.SystemClock.elapsedRealtime());
+		tvIntervalTimer.start();
+
 	}
 
 	@Click(R.id.rscRollback)
 	public void execRollback() {
-		Util.showDialog(this, "rollback!");
+		vib.vibrate(VIB_TIME);
+
+		// 　１．カレントセットが0以上の場合、カレントセットを1--
+		if (currentSet > 0) {
+			currentSet--;
+		}
+
+		// 　２、値をすべて初期化する
+		clearData();
+
+		// 　３．メッセージに「待機中」を表示する
+		tvMsgBox.setText("待機中");
+
 	}
 
 	@Click(R.id.rscClear)
 	public void execClear() {
+		vib.vibrate(VIB_TIME);
+
 		tvIntervalTimer.stop();
 		time = 0;
 
-		// 　１、値をすべて初期化する
-		tvMsgBox.setText("");
-		// tvIntervalTimer.setText("");
-		tvIntervalTimer.setBase(SystemClock.elapsedRealtime());
-		tvSetTime1.setText("");
-		tvSetTime2.setText("");
-		tvSetTime3.setText("");
-		tvSetTime4.setText("");
-		tvSetTime1.setText("");
-		tvSetTime2.setText("");
-		tvSetTime3.setText("");
-		tvSetTime4.setText("");
-		// 　２．メッセージに「待機中」を表示する
-		tvMsgBox.setText("waiting...");
+		// ・クリアイベント
+		// 　初期イベントと同じ振る舞い
+		init();
 
-		// 　３．ロールバックボタンを非活性
-		btStart.setEnabled(true);
-		btEnd.setEnabled(true);
-		btRollback.setEnabled(false);
-		btClear.setEnabled(true);
+	}
 
+	private void clearData() {
+		tvMsgBox.setText(Constants.BLANK);
+		// tvIntervalTimer.setText(Constants.BLANK);
+		tvIntervalTimer.setBase(android.os.SystemClock.elapsedRealtime());
+		tvSetTime1.setText(Constants.BLANK);
+		tvSetTime2.setText(Constants.BLANK);
+		tvSetTime3.setText(Constants.BLANK);
+		tvSetTime4.setText(Constants.BLANK);
+		tvIntervalTime1.setText(Constants.BLANK);
+		tvIntervalTime2.setText(Constants.BLANK);
+		tvIntervalTime3.setText(Constants.BLANK);
+		tvIntervalTime4.setText(Constants.BLANK);
+	}
+
+	private void setNavigator(int currentSet) {
+		tvNavi1.setBackgroundResource(R.color.main_color2);
+		tvNavi2.setBackgroundResource(R.color.main_color2);
+		tvNavi3.setBackgroundResource(R.color.main_color2);
+		tvNavi4.setBackgroundResource(R.color.main_color2);
+		if (currentSet == 1) {
+			tvNavi1.setBackgroundResource(R.color.main_color3);
+		} else if (currentSet == 2) {
+			tvNavi2.setBackgroundResource(R.color.main_color3);
+		} else if (currentSet == 3) {
+			tvNavi3.setBackgroundResource(R.color.main_color3);
+		} else if (currentSet == 4) {
+			tvNavi4.setBackgroundResource(R.color.main_color3);
+		}
 	}
 
 }
