@@ -22,7 +22,7 @@ import com.redpoodle.healthcareware.util.Util;
 @EActivity(R.layout.activity_main)
 public class MainActivity extends Activity {
 
-	private long time = 0;
+	// private long time = 0;
 
 	// メッセージボックス
 	@ViewById(R.id.rscMsgBox)
@@ -161,6 +161,8 @@ public class MainActivity extends Activity {
 		btRollback.setEnabled(false);
 		btClear.setEnabled(true);
 
+		setNavigator(0);
+
 		vib = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
 	}
@@ -209,16 +211,37 @@ public class MainActivity extends Activity {
 
 		// １．カウント停止
 		tvIntervalTimer.stop();
-		time = SystemClock.elapsedRealtime() - tvIntervalTimer.getBase();
+		// time = SystemClock.elapsedRealtime() - tvIntervalTimer.getBase();
+
+		// １．５ ワークアウト終了判断
+		if (currentSet == 4 && !tvSetTime4.getText().equals(Constants.BLANK)) {
+			// インターバルセット４の終了とみなす
+			tvIntervalTime4.setText(tvIntervalTimer.getText());
+			btStart.setEnabled(false);
+			btEnd.setEnabled(false);
+			btRollback.setEnabled(false);
+			btClear.setEnabled(true);
+			tvIntervalTimer.setBase(android.os.SystemClock.elapsedRealtime());
+			setNavigator(0);
+			return;
+		}
 
 		// 　２．メッセージに「インターバル」を表示する
 		tvMsgBox.setText("インターバル");
 
 		// 　３．開始ボタンを活性にする
-		btStart.setEnabled(true);
+		if (currentSet == 4) {
+			btStart.setEnabled(false);
+		} else {
+			btStart.setEnabled(true);
+		}
 
 		// 　４．終了ボタンを非活性にする
-		btEnd.setEnabled(false);
+		if (currentSet == 4) {
+			btEnd.setEnabled(true);
+		} else {
+			btEnd.setEnabled(false);
+		}
 
 		// 　５．カウントをカレントセットタイムラベルにセットする
 		if (currentSet == 1) {
@@ -241,17 +264,24 @@ public class MainActivity extends Activity {
 	public void execRollback() {
 		vib.vibrate(VIB_TIME);
 
-		// 　１．カレントセットが0以上の場合、カレントセットを1--
+		// １．カウント停止
+		tvIntervalTimer.stop();
+		// time = SystemClock.elapsedRealtime() - tvIntervalTimer.getBase();
+
+		// ２．カレントセットが0以上の場合、カレントセットを1--
 		if (currentSet > 0) {
 			currentSet--;
 		}
-
-		// 　２、値をすべて初期化する
-		clearData();
-
-		// 　３．メッセージに「待機中」を表示する
+		// ３．カレントセット以降の値をすべて初期化する
+		clearData(currentSet);
+		// ４．メッセージに「待機中」を表示する
 		tvMsgBox.setText("待機中");
-
+		// ５．セットナビゲータをセット
+		setNavigator(currentSet);
+		// ６．カレントセットが0の場合、ロールバックボタンを非活性
+		if (currentSet == 0) {
+			btRollback.setEnabled(false);
+		}
 	}
 
 	@Click(R.id.rscClear)
@@ -259,7 +289,7 @@ public class MainActivity extends Activity {
 		vib.vibrate(VIB_TIME);
 
 		tvIntervalTimer.stop();
-		time = 0;
+		// time = 0;
 
 		// ・クリアイベント
 		// 　初期イベントと同じ振る舞い
@@ -279,6 +309,34 @@ public class MainActivity extends Activity {
 		tvIntervalTime2.setText(Constants.BLANK);
 		tvIntervalTime3.setText(Constants.BLANK);
 		tvIntervalTime4.setText(Constants.BLANK);
+	}
+
+	/**
+	 * 値の削除
+	 * 
+	 * @param setCount
+	 *            指定セット以降の数値データをクリアします
+	 */
+	private void clearData(int setCount) {
+		tvMsgBox.setText(Constants.BLANK);
+		// tvIntervalTimer.setText(Constants.BLANK);
+		tvIntervalTimer.setBase(android.os.SystemClock.elapsedRealtime());
+		if (setCount < 1) {
+			tvSetTime1.setText(Constants.BLANK);
+			tvIntervalTime1.setText(Constants.BLANK);
+		}
+		if (setCount < 2) {
+			tvSetTime2.setText(Constants.BLANK);
+			tvIntervalTime2.setText(Constants.BLANK);
+		}
+		if (setCount < 3) {
+			tvSetTime3.setText(Constants.BLANK);
+			tvIntervalTime3.setText(Constants.BLANK);
+		}
+		if (setCount < 4) {
+			tvSetTime4.setText(Constants.BLANK);
+			tvIntervalTime4.setText(Constants.BLANK);
+		}
 	}
 
 	private void setNavigator(int currentSet) {
